@@ -30,6 +30,11 @@ package com.workshop3;// package name
  *         - Throw Exceptions for invalid entries
  *         - I/P – 11Sep2020, 12Sep2020
  *         - O/P – Ridgewood, Rating: 5 and Total Rates: $140
+ *         Ability to find the cheapest best
+ * UC11 :- rated hotel Hotel for a given Date Range for a Reward Customer using Java Streams
+ *          - Use Regex Validation, Exceptions and Java 8 Date Feature
+ *          - I/P – 11Sep2020, 12Sep2020
+ *          - O/P – Ridgewood, Rating: 5 and Total Rates: $140
  *
  */
 
@@ -38,10 +43,14 @@ package com.workshop3;// package name
  * import LocalDate class
  * import java.util.* = import all class in this package
  * import Collectors class
+ * import matcher class
+ * import pattern class
  */
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -578,7 +587,38 @@ public class HotelReservationSystem {
             }
         }
     }
-
+    /**
+     * Method for validating date format using regex
+     *
+     * @param d1 takes in the date 1 String
+     * @param d2 takes in the date 2 String
+     * @return returns true if entered dates are valid
+     */
+    public boolean isDateValid(String d1, String d2) {
+        /**
+         * Regex to check date.
+         * 1) ^ represents starting character of the string.
+         * 2) [0-9]{4} represents a digit must occur at least four time.
+         * 3) [0-9]{2} represents a digit must occur at least two time.
+         * 4) [0-9]{2} represents a digit must occur at least two time.
+         * 5) $ represents the end of the string.
+         */
+        String regex = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$";
+        /**
+         * Compile the Regex
+         */
+        Pattern pattern = Pattern.compile(regex);
+        /**
+         * Pattern class contains matcher() method to find matching between given date
+         * and regular expression.
+         */
+        Matcher matcher1 = pattern.matcher(d1);
+        Matcher matcher2 = pattern.matcher(d2);
+        /**
+         * Return if the date matched the Regex
+         */
+        return matcher1.matches() && matcher2.matches();
+    }
 
     /**
      * create a main method,all program execute in main method
