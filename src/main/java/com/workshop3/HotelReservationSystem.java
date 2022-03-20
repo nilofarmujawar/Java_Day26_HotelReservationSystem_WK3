@@ -14,6 +14,9 @@ package com.workshop3;// package name
  *        - O/P – Lakewood and Bridgewood with Total Rates $200
  * UC5 :- Ability to add ratings to each Hotel
  *        - Lakewood is 3, Bridgewood is 4 and Ridgewood is 5
+ * UC6 :- Ability to find the cheapest best rated hotel Hotel for a given Date Range
+ *        - I/P – 11Sep2020, 12Sep2020
+ *        - O/P – Bridgewood, Rating: 4 and Total Rates: $200
  *
  */
 
@@ -159,6 +162,9 @@ public class HotelReservationSystem {
             System.out.println(" The cheapest hotel is " + hotelObjList.get(0).getHotelName() + ", Total Rates = $" + hotelObjList.get(0).getWeekdayRate() * 2);
             return hotelObjList.get(0).getWeekdayRate() * 2;
 
+            /**
+             * condition checked if 1st is false then checked else if condition if its true then this condition is executed
+             */
         } else if (weekEnds == 2) {
             List<Hotel> hotelObjList = hotelReservation.values().stream().sorted(Comparator.comparing(Hotel -> Hotel.weekendRate)).collect(Collectors.toList());
             /**
@@ -193,6 +199,80 @@ public class HotelReservationSystem {
             }
         }
     }
+    /**
+     * create a parameterized method name as findCheapestBestBestRatedHotel
+     * Method for finding the cheapest Hotel for given dates
+     *
+     * @param d1 day1 is passed as String parameter
+     * @param d2 day2 is passed as String parameter
+     * @return returns the cheapest total rates
+     */
+    public int findCheapestBestBestRatedHotel(String d1, String d2) {
+        /**
+         * variables
+         */
+        int weekEnds = 0;
+        /**
+         * getting the parsed local date for day1 and day2
+         */
+        DayOfWeek day1 = LocalDate.parse(d1).getDayOfWeek();
+        DayOfWeek day2 = LocalDate.parse(d2).getDayOfWeek();
+        /**
+         * using logical or operator.
+         * they returns true if one of the conditions is true
+         * check if day1 is sunday or saturday
+         */
+        if (day1.equals(DayOfWeek.SUNDAY) || day1.equals(DayOfWeek.SATURDAY)) {
+            weekEnds++;
+        }
+        /**
+         * check if day2 is sunday or saturday
+         */
+        if (day2.equals(DayOfWeek.SUNDAY) || day2.equals(DayOfWeek.SATURDAY)) {
+            weekEnds++;
+        }
+        if (weekEnds == 0) {
+            List<Hotel> hotelObjList = hotelReservation.values().stream().sorted(Comparator.comparing(Hotel -> Hotel.weekdayRate)).collect(Collectors.toList());
+            System.out.println("The cheapest hotel is " + hotelObjList.get(0).getHotelName() + ", Rating : " + hotelObjList.get(0).getRating() + ", Total Rates = $" + hotelObjList.get(0).getWeekdayRate() * 2);
+            return hotelObjList.get(0).getWeekdayRate() * 2;
+        }
+        /**
+         * condition checked if 1st is false then checked else if condition if its true then this condition is executed
+         */
+        if (weekEnds == 2) {
+            List<Hotel> hotelObjList = hotelReservation.values().stream().sorted(Comparator.comparing(Hotel -> Hotel.weekendRate)).collect(Collectors.toList());
+            /**
+             * The cheapest hotel is Lakewood, Rating : 3, Total Rates = $220
+             */
+            System.out.println("The cheapest hotel is " + hotelObjList.get(0).getHotelName() + ", Rating : " + hotelObjList.get(0).getRating() + ", Total Rates = $" + hotelObjList.get(0).getWeekendRate() * 2);
+            /**
+             * in the list lakewood is 0th index and lakewood rate is 110
+             * for 2 days rate is :- lakewood =110 * 2 =220
+             */
+            return hotelObjList.get(0).getWeekendRate() * 2;
+        }
+        List<Hotel> hotelObjList = hotelReservation.values().stream().sorted(Comparator.comparing(Hotel -> Hotel.avgRate)).collect(Collectors.toList());
+        if (hotelObjList.get(0).getAvgRate() == hotelObjList.get(1).getAvgRate() && hotelObjList.get(0).getRating() < hotelObjList.get(1).getRating()) {
+            /**
+             *  The cheapest hotels are Bridgewood and Lakewood, Total Rates = $200
+             */
+            System.out.println("The cheapest hotel is " + hotelObjList.get(1).getHotelName() + ", Rating " + hotelObjList.get(1).getRating() + ", Total Rates = $" + (hotelObjList.get(1).getWeekdayRate() + hotelObjList.get(1).getWeekendRate()));
+            return hotelObjList.get(1).getAvgRate();
+        }
+        if (hotelObjList.get(0).getAvgRate() == hotelObjList.get(1).getAvgRate() && hotelObjList.get(0).getRating() > hotelObjList.get(1).getRating()) {
+            /**
+             * The cheapest hotel is Bridgewood, Rating 4, Total Rates = $200
+             */
+            System.out.println("The cheapest hotel is " + hotelObjList.get(0).getHotelName() + ", Rating " + hotelObjList.get(0).getRating() + ", Total Rates = $" + (hotelObjList.get(0).getWeekdayRate() + hotelObjList.get(0).getWeekendRate()));
+            return hotelObjList.get(0).getAvgRate();
+            /**
+             * if condition is false then execute else statement
+             */
+        } else {
+            System.out.println("The cheapest hotel is " + hotelObjList.get(0).getHotelName() + ", Rating " + hotelObjList.get(0).getRating() + ", Total Rates = $" + (hotelObjList.get(0).getWeekdayRate() + hotelObjList.get(0).getWeekendRate()));
+            return hotelObjList.get(0).getWeekdayRate() + hotelObjList.get(0).getWeekendRate();
+        }
+    }
 
     /**
      * create a main method,all program execute in main method
@@ -221,6 +301,10 @@ public class HotelReservationSystem {
          * calling findCheapestHotelForWeekdayAndWeekend method from object name as hotel
          */
         hotel.findCheapestHotelForWeekdayAndWeekend("2020-09-11", "2020-09-12");
+        /**
+         * calling findCheapestBestBestRatedHotel method from object name as hotel
+         */
+        hotel.findCheapestBestBestRatedHotel("2020-09-11", "2020-09-12");
     }
 
 }

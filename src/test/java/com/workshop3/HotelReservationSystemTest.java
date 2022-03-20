@@ -19,6 +19,7 @@ public class HotelReservationSystemTest {
         obj.addHotel();
         Assertions.assertEquals(3, obj.hotelReservation.size());
     }
+     // Output :- True test case passed
 
     //UC2
     @Test
@@ -27,6 +28,8 @@ public class HotelReservationSystemTest {
         obj.addHotel();
         Assertions.assertEquals(220, obj.findCheapestHotel("2020-09-10", "2020-09-11"));
     }
+      //  Output :-
+      //  The cheapest hotel is Lakewood, Rating : 3, Total Rates = $220
 
     //UC3
     @Test
@@ -37,6 +40,7 @@ public class HotelReservationSystemTest {
         Assertions.assertEquals(50, obj.hotelReservation.get("Bridgewood").getWeekendRate());
         Assertions.assertEquals(150, obj.hotelReservation.get("Ridgewood").getWeekendRate());
     }
+     // Output :- True test case passed
 
     //UC4
     @Test
@@ -45,6 +49,8 @@ public class HotelReservationSystemTest {
         obj.addHotel();
         Assertions.assertEquals(200, obj.findCheapestHotelForWeekdayAndWeekend("2020-09-11", "2020-09-12"));
     }
+      //  Output :-
+      //  The cheapest hotels are Bridgewood and Lakewood, Total Rates = $200
 
     //UC5
     @Test
@@ -55,4 +61,15 @@ public class HotelReservationSystemTest {
         Assertions.assertEquals(4, obj.hotelReservation.get("Bridgewood").getRating());
         Assertions.assertEquals(3, obj.hotelReservation.get("Lakewood").getRating());
     }
+      // Output :- True test case passed
+
+    //UC6
+    @Test
+    public void givenDateRangeShouldReturnTheCheapestBestRatedHotel() {
+        HotelReservationSystem obj = new HotelReservationSystem();
+        obj.addHotel();
+        Assertions.assertEquals(200, obj.findCheapestBestBestRatedHotel("2020-09-11", "2020-09-12"));
+    }
+      //Output :-
+      // The cheapest hotel is Bridgewood, Rating 4, Total Rates = $200
 }
