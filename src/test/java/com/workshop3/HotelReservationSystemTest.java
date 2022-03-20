@@ -21,6 +21,7 @@ public class HotelReservationSystemTest {
     }
      // Output :- True test case passed
 
+
     //UC2
     @Test
     public void givenDateRangeShouldReturnTheCheapestHotelRate() {
@@ -30,6 +31,7 @@ public class HotelReservationSystemTest {
     }
       //  Output :-
       //  The cheapest hotel is Lakewood, Rating : 3, Total Rates = $220
+
 
     //UC3
     @Test
@@ -42,6 +44,7 @@ public class HotelReservationSystemTest {
     }
      // Output :- True test case passed
 
+
     //UC4
     @Test
     public void givenDateRangeShouldReturnTheCheapestHotelRateForWeekdayAndWeekend() {
@@ -51,6 +54,7 @@ public class HotelReservationSystemTest {
     }
       //  Output :-
       //  The cheapest hotels are Bridgewood and Lakewood, Total Rates = $200
+
 
     //UC5
     @Test
@@ -63,6 +67,7 @@ public class HotelReservationSystemTest {
     }
       // Output :- True test case passed
 
+
     //UC6
     @Test
     public void givenDateRangeShouldReturnTheCheapestBestRatedHotel() {
@@ -72,4 +77,16 @@ public class HotelReservationSystemTest {
     }
       //Output :-
       // The cheapest hotel is Bridgewood, Rating 4, Total Rates = $200
+
+
+    //UC7
+      @Test
+      public void givenDateRangeShouldReturnTheBestRatedHotel() {
+          HotelReservationSystem obj = new  HotelReservationSystem();
+          obj.addHotel();
+          Assertions.assertEquals(370, obj.findBestRatedHotel("2020-09-11", "2020-09-12"));
+      }
+      // Output :-
+      // The Best Rated hotel is: Ridgewood, Rating: 5, Total Rates = $370
 }
+

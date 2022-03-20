@@ -17,6 +17,9 @@ package com.workshop3;// package name
  * UC6 :- Ability to find the cheapest best rated hotel Hotel for a given Date Range
  *        - I/P – 11Sep2020, 12Sep2020
  *        - O/P – Bridgewood, Rating: 4 and Total Rates: $200
+ * UC7 :- Ability to find the Best Rated Hotel for a given Date Range
+ *        - I/P – 11Sep2020, 12Sep2020
+ *        - O/P - Ridgewood & Total Rates $370
  *
  */
 
@@ -159,7 +162,16 @@ public class HotelReservationSystem {
         }
         if (weekEnds == 0) {
             List<Hotel> hotelObjList = hotelReservation.values().stream().sorted(Comparator.comparing(Hotel -> Hotel.weekdayRate)).collect(Collectors.toList());
+            /**
+             * The cheapest hotel is Lakewood, Rating : 3, Total Rates = $220
+             */
             System.out.println(" The cheapest hotel is " + hotelObjList.get(0).getHotelName() + ", Total Rates = $" + hotelObjList.get(0).getWeekdayRate() * 2);
+            /**
+             * in this list 0th position is lakewood
+             * lakewood = weekdayrate * 2
+             *          = 110 * 2
+             *          =$220
+             */
             return hotelObjList.get(0).getWeekdayRate() * 2;
 
             /**
@@ -167,13 +179,11 @@ public class HotelReservationSystem {
              */
         } else if (weekEnds == 2) {
             List<Hotel> hotelObjList = hotelReservation.values().stream().sorted(Comparator.comparing(Hotel -> Hotel.weekendRate)).collect(Collectors.toList());
-            /**
-             * The cheapest hotel is Lakewood, Rating : 3, Total Rates = $220
-             */
+
             System.out.println(" The cheapest hotel is " + hotelObjList.get(0).getHotelName() + ", Total Rates = $" + hotelObjList.get(0).getWeekendRate() * 2);
             /**
-             * in the list lakewood is 0th index and lakewood rate is 110
-             * for 2 days rate is :- lakewood =110 * 2 =220
+             * in the list lakewood is 0th index and lakewood weekendrate is 90
+             * for 2 days rate is :- lakewood =90 * 2 =180
              */
             return hotelObjList.get(0).getWeekendRate() * 2;
             /**
@@ -195,6 +205,12 @@ public class HotelReservationSystem {
                  */
             } else {
                 System.out.println("The cheapest hotel is " + hotelObjList.get(0).getHotelName() + ", Total Rates = $" + (hotelObjList.get(0).getWeekdayRate() + hotelObjList.get(0).getWeekendRate()));
+                /**
+                 * lakwood is 0th index in hotel list
+                 * weekday rate + weekend rate
+                 * 110 + 90
+                 * $200
+                 */
                 return hotelObjList.get(0).getWeekdayRate() + hotelObjList.get(0).getWeekendRate();
             }
         }
@@ -233,44 +249,156 @@ public class HotelReservationSystem {
         }
         if (weekEnds == 0) {
             List<Hotel> hotelObjList = hotelReservation.values().stream().sorted(Comparator.comparing(Hotel -> Hotel.weekdayRate)).collect(Collectors.toList());
+            /**
+             * The cheapest hotel is Lakewood, Rating : 3, Total Rates = $220
+             */
             System.out.println("The cheapest hotel is " + hotelObjList.get(0).getHotelName() + ", Rating : " + hotelObjList.get(0).getRating() + ", Total Rates = $" + hotelObjList.get(0).getWeekdayRate() * 2);
+            /**
+             * in 0th position is lakewood in the hotel list
+             * weekdayrate * 2
+             * 110 * 2
+             * $220
+             */
             return hotelObjList.get(0).getWeekdayRate() * 2;
         }
         /**
          * condition checked if 1st is false then checked else if condition if its true then this condition is executed
          */
         if (weekEnds == 2) {
-            List<Hotel> hotelObjList = hotelReservation.values().stream().sorted(Comparator.comparing(Hotel -> Hotel.weekendRate)).collect(Collectors.toList());
             /**
-             * The cheapest hotel is Lakewood, Rating : 3, Total Rates = $220
+             * 1. Here, we've made a list of Hotel objects.
+             * 2. We're streaming that list, and using the sorted() method with a Comparator.
+             * 3. we're using the comparing() method, and supplying the weekendRateuse the comparing() method,
+             *    which accepts a sorting key function  just like the other ones.
+             * 4. All of them simply return a comparator, with the passed function as the sorting key.
+             * 5.If we wanted save the results of sorting after the program was executed,
+             *    we would have to collect() the data back in a Collection
+             *
              */
+            List<Hotel> hotelObjList = hotelReservation.values().stream().sorted(Comparator.comparing(Hotel -> Hotel.weekendRate)).collect(Collectors.toList());
+
             System.out.println("The cheapest hotel is " + hotelObjList.get(0).getHotelName() + ", Rating : " + hotelObjList.get(0).getRating() + ", Total Rates = $" + hotelObjList.get(0).getWeekendRate() * 2);
             /**
-             * in the list lakewood is 0th index and lakewood rate is 110
-             * for 2 days rate is :- lakewood =110 * 2 =220
+             * in the list lakewood is 0th index and lakewood weekendrate is 90
+             * for 2 days rate is :- lakewood =90 * 2 =180
              */
             return hotelObjList.get(0).getWeekendRate() * 2;
         }
+        /**
+         * 1. Here, we've made a list of Hotel objects.
+         * 2. We're streaming that list, and using the sorted() method with a Comparator.
+         * 3. we're using the comparing() method, and supplying the avgRate the comparing() method,
+         *    which accepts a sorting key function  just like the other ones.
+         * 4. All of them simply return a comparator, with the passed function as the sorting key.
+         * 5.If we wanted save the results of sorting after the program was executed,
+         *    we would have to collect() the data back in a Collection
+         *
+         */
         List<Hotel> hotelObjList = hotelReservation.values().stream().sorted(Comparator.comparing(Hotel -> Hotel.avgRate)).collect(Collectors.toList());
+        /**
+         * check the condition comparing the 2 hotels avgrate lakewood and bridgewood
+         */
         if (hotelObjList.get(0).getAvgRate() == hotelObjList.get(1).getAvgRate() && hotelObjList.get(0).getRating() < hotelObjList.get(1).getRating()) {
-            /**
-             *  The cheapest hotels are Bridgewood and Lakewood, Total Rates = $200
-             */
             System.out.println("The cheapest hotel is " + hotelObjList.get(1).getHotelName() + ", Rating " + hotelObjList.get(1).getRating() + ", Total Rates = $" + (hotelObjList.get(1).getWeekdayRate() + hotelObjList.get(1).getWeekendRate()));
+            /**
+             * 1st position in hotel list is Bridgewood
+             * AvgRate = weekdayrate + weekendrate
+             *        = 160 + 60
+             *        =220
+             */
             return hotelObjList.get(1).getAvgRate();
         }
         if (hotelObjList.get(0).getAvgRate() == hotelObjList.get(1).getAvgRate() && hotelObjList.get(0).getRating() > hotelObjList.get(1).getRating()) {
-            /**
-             * The cheapest hotel is Bridgewood, Rating 4, Total Rates = $200
-             */
+
             System.out.println("The cheapest hotel is " + hotelObjList.get(0).getHotelName() + ", Rating " + hotelObjList.get(0).getRating() + ", Total Rates = $" + (hotelObjList.get(0).getWeekdayRate() + hotelObjList.get(0).getWeekendRate()));
+            /**
+             * lakewood is 0th position
+             * avgrate= weekdayrate + weekendrate
+             *         110 + 90 = 200
+             */
             return hotelObjList.get(0).getAvgRate();
             /**
              * if condition is false then execute else statement
              */
         } else {
             System.out.println("The cheapest hotel is " + hotelObjList.get(0).getHotelName() + ", Rating " + hotelObjList.get(0).getRating() + ", Total Rates = $" + (hotelObjList.get(0).getWeekdayRate() + hotelObjList.get(0).getWeekendRate()));
+            /**
+             * lakewood = 110 + 90 = $200
+             */
             return hotelObjList.get(0).getWeekdayRate() + hotelObjList.get(0).getWeekendRate();
+        }
+    }
+
+    /**
+     * Method to find the Best Rated Hotel
+     * @param d1 day1 is passed as String parameter
+     * @param d2 day2 is passed as String parameter
+     * @return returns the best rated hotel
+     */
+    public int findBestRatedHotel(String d1, String d2) {
+        /**
+         * variable
+         */
+        int weekEnds = 0;
+        /**
+         * getting the parsed local date for day1 and day2
+         */
+        DayOfWeek day1 = LocalDate.parse(d1).getDayOfWeek();
+        DayOfWeek day2 = LocalDate.parse(d2).getDayOfWeek();
+        /**
+         * using logical or operator.
+         * they returns true if one of the conditions is true
+         * check if day1 is sunday or saturday
+         */
+        if (day1.equals(DayOfWeek.SUNDAY) || day1.equals(DayOfWeek.SATURDAY)) {
+            weekEnds++;
+        }
+        /**
+         * check if day2 is sunday or saturday
+         */
+        if (day2.equals(DayOfWeek.SUNDAY) || day2.equals(DayOfWeek.SATURDAY)) {
+            weekEnds++;
+        }
+        /**
+         * 1. Here, we've made a list of Hotel objects.
+         * 2. We're streaming that list, and using the sorted() method with a Comparator.
+         * 3. we're using the comparing() method, and supplying the rating the comparing() method,
+         *    which accepts a sorting key function  just like the other ones.
+         * 4. All of them simply return a comparator, with the passed function as the sorting key.
+         * 5.If we wanted save the results of sorting after the program was executed,
+         *    we would have to collect() the data back in a Collection
+         *
+         */
+        List<Hotel> hotelObjList = hotelReservation.values().stream().sorted(Comparator.comparing(Hotel -> Hotel.rating)).collect(Collectors.toList());
+        if (weekEnds == 0) {
+            System.out.println(" The Best Rated hotel is: " + hotelObjList.get(2).getHotelName() + ", Rating: " + hotelObjList.get(2).getRating() + ", Total Rates = $" + hotelObjList.get(2).getWeekdayRate() * 2);
+            /**
+             * RidgeWood= Weekday rate * 2
+             *          = 220 * 2
+             *          = $440
+             */
+            return hotelObjList.get(2).getWeekdayRate() * 2;
+        }
+        if (weekEnds == 2) {
+
+            System.out.println(" The Best Rated hotel is: " + hotelObjList.get(2).getHotelName() + ", Rating: " + hotelObjList.get(2).getRating() + ", Total Rates = $" + hotelObjList.get(2).getWeekendRate() * 2);
+            /**
+             * Ridgewood is 2nd no in hotel list
+             * Ridgewood = 150 * 2
+             *           =$ 300
+             */
+            return hotelObjList.get(2).getWeekendRate() * 2;
+        } else {
+            /**
+             * The Best Rated hotel is: Ridgewood, Rating: 5, Total Rates = $370
+             */
+            System.out.println(" The Best Rated hotel is: " + hotelObjList.get(2).getHotelName() + ", Rating: " + hotelObjList.get(2).getRating() + ", Total Rates = $" + (hotelObjList.get(2).getWeekdayRate() + hotelObjList.get(2).getWeekendRate()));
+            /**
+             * Ridgewood = weekdayrate + WeekendRate
+             *           =$220 + $150
+             *           = $370
+             */
+            return (hotelObjList.get(2).getWeekdayRate() + hotelObjList.get(2).getWeekendRate());
         }
     }
 
@@ -305,6 +433,10 @@ public class HotelReservationSystem {
          * calling findCheapestBestBestRatedHotel method from object name as hotel
          */
         hotel.findCheapestBestBestRatedHotel("2020-09-11", "2020-09-12");
+        /**
+         * calling findBestRatedHotel method from object name as hotel
+         */
+        hotel.findBestRatedHotel("2020-09-11", "2020-09-12");
     }
 
 }
