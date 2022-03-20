@@ -20,6 +20,11 @@ package com.workshop3;// package name
  * UC7 :- Ability to find the Best Rated Hotel for a given Date Range
  *        - I/P – 11Sep2020, 12Sep2020
  *        - O/P - Ridgewood & Total Rates $370
+ * UC8 :- not giving in problem statement
+ * UC9 :- Ability to add special rates for reward customers as  part of Loyalty Program
+ *        - For Lakewood for Reward Customer Weekday & Weekend Rates per day is $80 & $80
+ *        - For Bridgewood $110 and $50
+ *        - For Ridgewood $100 and $40
  *
  */
 

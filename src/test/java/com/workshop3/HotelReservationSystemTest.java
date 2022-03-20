@@ -88,5 +88,19 @@ public class HotelReservationSystemTest {
       }
       // Output :-
       // The Best Rated hotel is: Ridgewood, Rating: 5, Total Rates = $370
+
+    //UC8 = Not given in problem statement
+
+    //UC9
+    @Test
+    public void givenSpecialRateShouldReturnTheThoseHotelRate() {
+        HotelReservationSystem obj = new HotelReservationSystem();
+        obj.addHotel();
+        Assertions.assertEquals(80, obj.hotelReservation.get("Lakewood").getSpecialWeekdayRate());
+        Assertions.assertEquals(110, obj.hotelReservation.get("Bridgewood").getSpecialWeekdayRate());
+        Assertions.assertEquals(100, obj.hotelReservation.get("Ridgewood").getSpecialWeekdayRate());
+    }
+    // Output :- Ture, test case passed.
 }
+
 
