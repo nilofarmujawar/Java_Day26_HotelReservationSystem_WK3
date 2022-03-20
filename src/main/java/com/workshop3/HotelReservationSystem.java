@@ -12,6 +12,9 @@ package com.workshop3;// package name
  * UC4 :- Ability to find the cheapest Hotel for a given Date Range based on weekday and weekend
  *        - I/P – 11Sep2020, 12Sep2020
  *        - O/P – Lakewood and Bridgewood with Total Rates $200
+ * UC5 :- Ability to add ratings to each Hotel
+ *        - Lakewood is 3, Bridgewood is 4 and Ridgewood is 5
+ *
  */
 
 /**

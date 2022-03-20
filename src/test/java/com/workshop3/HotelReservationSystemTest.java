@@ -12,20 +12,22 @@ import org.junit.jupiter.api.Test;
  */
 public class HotelReservationSystemTest {
 
-    //uc1
+    //UC1
     @Test
     public void givenHotelNamesWhenAddedShouldReturnSize() {
         HotelReservationSystem obj = new HotelReservationSystem();
         obj.addHotel();
         Assertions.assertEquals(3, obj.hotelReservation.size());
     }
-    //uc2
+
+    //UC2
     @Test
     public void givenDateRangeShouldReturnTheCheapestHotelRate() {
         HotelReservationSystem  obj = new HotelReservationSystem();
         obj.addHotel();
         Assertions.assertEquals(220, obj.findCheapestHotel("2020-09-10", "2020-09-11"));
     }
+
     //UC3
     @Test
     public void givenWeekDayWeekEndRatesShouldReturnThoseRates() {
@@ -42,5 +44,15 @@ public class HotelReservationSystemTest {
         HotelReservationSystem obj = new HotelReservationSystem();
         obj.addHotel();
         Assertions.assertEquals(200, obj.findCheapestHotelForWeekdayAndWeekend("2020-09-11", "2020-09-12"));
+    }
+
+    //UC5
+    @Test
+    public void givenRatingShouldReturnsThoseRatings() {
+        HotelReservationSystem obj = new  HotelReservationSystem();
+        obj.addHotel();
+        Assertions.assertEquals(5, obj.hotelReservation.get("Ridgewood").getRating());
+        Assertions.assertEquals(4, obj.hotelReservation.get("Bridgewood").getRating());
+        Assertions.assertEquals(3, obj.hotelReservation.get("Lakewood").getRating());
     }
 }
