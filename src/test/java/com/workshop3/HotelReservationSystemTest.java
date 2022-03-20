@@ -119,7 +119,20 @@ public class HotelReservationSystemTest {
         obj.addHotel();
         Assertions.assertTrue(obj.isDateValid("2020-09-11", "2020-09-12"));
     }
+      // Output :- True test case passed
+
+
+    //UC12
+    @Test
+    public void givenDateRangeShouldReturnTheCheapestBestRatedHotelforRegularCustomer() {
+        HotelReservationSystem obj = new HotelReservationSystem();
+        obj.addHotel();
+        Assertions.assertEquals(200, obj.findCheapestBestBestRatedHotel("2020-09-11", "2020-09-12"));
+    }
 }
+    // Output :-
+     // The cheapest hotel is Bridgewood, Rating 4, Total Rates = $200
+
 
 
 
