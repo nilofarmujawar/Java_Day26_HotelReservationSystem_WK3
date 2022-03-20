@@ -101,6 +101,18 @@ public class HotelReservationSystemTest {
         Assertions.assertEquals(100, obj.hotelReservation.get("Ridgewood").getSpecialWeekdayRate());
     }
     // Output :- Ture, test case passed.
+
+    //UC10
+    @Test
+    public void givenDateRangeShouldReturnTheCheapestBestRatedHotelforRewardCustomer() {
+        HotelReservationSystem obj = new   HotelReservationSystem();
+        obj.addHotel();
+        Assertions.assertEquals(140, obj.findCheapestHotelForRewardCustomer("2020-09-11", "2020-09-12"));
+    }
+    // Output :-
+     // The cheapest hotel is Ridgewood, Rating 5, Total Rates = $140
+
 }
+
 
 
