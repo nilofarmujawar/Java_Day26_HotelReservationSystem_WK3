@@ -26,4 +26,14 @@ public class HotelReservationSystemTest {
         obj.addHotel();
         Assertions.assertEquals(220, obj.findCheapestHotel("2020-09-10", "2020-09-11"));
     }
+    //UC3
+    @Test
+    public void givenWeekDayWeekEndRatesShouldReturnThoseRates() {
+        HotelReservationSystem obj = new HotelReservationSystem();
+        obj.addHotel();
+        Assertions.assertEquals(90, obj.hotelReservation.get("Lakewood").getWeekendRate());
+        Assertions.assertEquals(50, obj.hotelReservation.get("Bridgewood").getWeekendRate());
+        Assertions.assertEquals(150, obj.hotelReservation.get("Ridgewood").getWeekendRate());
+    }
+
 }

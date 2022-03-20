@@ -5,6 +5,10 @@ package com.workshop3;// package name
  * UC2 :- Ability to find the cheapest Hotel for a given Date Range.
  *         - I/P – 10Sep2020, 11Sep2020
  *         - O/P – Lakewood, Total Rates: $220
+ * UC3 :- Ability to add weekday and weekend rates for each Hotel
+ *         - For Lakewood Weekday & Weekend Rates per day is $110 & $90
+ *         - For Bridgewood $150 and $50
+ *         - For Ridgewood $220 and $150
  */
 
 /**
@@ -56,7 +60,6 @@ public class HotelReservationSystem {
          */
         hotelReservation.put(obj3.getHotelName(), obj3);
     }
-
     /**
      * create a method name as enterDates
      * Method for inputting the dates from user
@@ -85,7 +88,6 @@ public class HotelReservationSystem {
          */
         findCheapestHotel(date1, date2);
     }
-
     /**
      * creating a parameterized method name as findCheapestHotel.
      * this Method for finding the cheapest Hotel for given dates
@@ -116,7 +118,6 @@ public class HotelReservationSystem {
 
     /**
      * create a main method,all program execute in main method
-     *
      * @param args no arguments
      */
     public static void main(String[] args) {
@@ -138,4 +139,5 @@ public class HotelReservationSystem {
          */
         hotel.enterDates();
     }
+
 }
