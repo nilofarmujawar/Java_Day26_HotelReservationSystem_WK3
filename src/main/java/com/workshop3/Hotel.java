@@ -23,7 +23,7 @@ class Hotel {
     int weekendRate;
     int specialWeekdayRate;
     int specialWeekendRate;
-    int avgRate = weekdayRate + weekendRate;
+    int avgRate;
 
     /**
      * create a parameterized constructor
@@ -44,6 +44,7 @@ class Hotel {
         this.weekendRate = weekendRate;
         this.specialWeekdayRate = specialWeekdayRate;
         this.specialWeekendRate = specialWeekendRate;
+        this.avgRate = weekdayRate + weekendRate;
     }
     /**
      * 1) The get method returns the variable value, and the set method sets the value.
