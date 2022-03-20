@@ -23,6 +23,7 @@ class Hotel {
     int weekendRate;
     int specialWeekdayRate;
     int specialWeekendRate;
+    int avgRate = weekdayRate + weekendRate;
 
     /**
      * create a parameterized constructor
@@ -44,10 +45,25 @@ class Hotel {
         this.specialWeekdayRate = specialWeekdayRate;
         this.specialWeekendRate = specialWeekendRate;
     }
-/**
- * 1) The get method returns the variable value, and the set method sets the value.
- * 2) "this" keyword is used to refer to the current object.
- */
+    /**
+     * 1) The get method returns the variable value, and the set method sets the value.
+     * 2) "this" keyword is used to refer to the current object.
+     */
+
+    /**
+     * The getAvgRate method returns the value of the variable avgRate.
+     * @return avgRate
+     */
+    public int getAvgRate() {
+        return avgRate;
+    }
+    /**
+     * The ssetAvgRate method takes a parameter (avgRate) and assigns it to the avgRate variable
+     * @param avgRate taking in this Hotel reservation system.
+     */
+    public void setAvgRate(int avgRate) {
+        this.avgRate = avgRate;
+    }
 
     /**
      * The getHotelName method returns the value of the variable hotelName.
